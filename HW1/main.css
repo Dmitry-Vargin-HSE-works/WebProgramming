@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+h4 {
+    text-align: center;
+}
+
+.article {
+    text-align: left;
+    width: 50%;
+    height: auto;
+    padding: 0 25%;
+}

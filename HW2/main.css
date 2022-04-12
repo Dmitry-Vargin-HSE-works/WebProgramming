@@ -17,8 +17,31 @@
 }
 
 .table_cell {
-    border: 1px solid black;
+    border: 10px solid black;
 
     width: 40px;
     height: 40px;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    border: 1px solid aliceblue;
+}
+
+.header_button {
+    height: 50%;
+    width: 30%;
+    margin: 1% 35%;
+
+    background-color: #F4FAFFFF;
+    border: 1px solid #d2d8e0;
+}
+
+.X0_img {
+    height: 100%;
+    width: 100%;
 }

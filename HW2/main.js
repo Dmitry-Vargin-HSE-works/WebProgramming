@@ -1,3 +1,4 @@
+let header = null;
 let main_div = null;
 let table = null;
 let tableArr = [[], [], []];
@@ -24,7 +25,6 @@ function createTable() {
         table.appendChild(row);
     }
     main_div.appendChild(table);
-    console.log(main_div.innerHTML);
 }
 
 function markCell(event) {
@@ -33,43 +33,61 @@ function markCell(event) {
     console.log(i_c, j_c);
 
     tableArr[i_c][j_c].value = lastPin = lastPin === "0"? "X" : "0";
-    tableArr[i_c][j_c].replaceChildren((() => {
-        let span = document.createElement("span");
-        span.innerText = lastPin
-        span.style.fontSize = "100%";
-        return span;
-    })())
+    createOorX(lastPin, tableArr[i_c][j_c]);
     tableArr[i_c][j_c].removeEventListener("click", markCell);
     if (checkWin()) {
-        alert("Win");
-        clearTable();
-        createTable();
+        // alert("Win");
+        // clearTable();
+        blockTable();
+        // createTable();
     }
+}
+
+function createOorX(name, div) {
+    var el = document.createElement("img");
+    el.className = "X0_img"
+    el.src = `images/${name}_black.png`;
+    div.replaceChildren(el)
 }
 
 function checkWin() {
     // Check by lines
-    if (
-        tableArr[0][0].value != null && tableArr[0][0].value === tableArr[0][1].value && tableArr[0][1].value === tableArr[0][2].value ||
-        tableArr[1][0].value != null && tableArr[1][0].value === tableArr[1][1].value && tableArr[1][1].value === tableArr[1][2].value ||
-        tableArr[2][0].value != null && tableArr[2][0].value === tableArr[2][1].value && tableArr[2][1].value === tableArr[2][2].value
-    ) {
+    if (tableArr[0][0].value != null && tableArr[0][0].value === tableArr[0][1].value && tableArr[0][1].value === tableArr[0][2].value) {
+        for (let i = 0; i < 3; ++i) {tableArr[0][i].style.borderColor = "red"}
+        return true;
+    } else if (tableArr[1][0].value != null && tableArr[1][0].value === tableArr[1][1].value && tableArr[1][1].value === tableArr[1][2].value) {
+        for (let i = 0; i < 3; ++i) {tableArr[1][i].style.borderColor = "red"}
+        return true;
+    } else if (tableArr[2][0].value != null && tableArr[2][0].value === tableArr[2][1].value && tableArr[2][1].value === tableArr[2][2].value) {
+        for (let i = 0; i < 3; ++i) {tableArr[2][i].style.borderColor = "red"}
         return true;
     // Check by columns
-    } else if (
-        tableArr[0][0].value != null && tableArr[0][0].value === tableArr[1][0].value && tableArr[1][0].value === tableArr[2][0].value ||
-        tableArr[0][1].value != null && tableArr[0][1].value === tableArr[1][1].value && tableArr[1][1].value === tableArr[2][1].value ||
-        tableArr[0][2].value != null && tableArr[0][2].value === tableArr[1][2].value && tableArr[1][2].value === tableArr[2][2].value
-    ) {
+    } else if (tableArr[0][0].value != null && tableArr[0][0].value === tableArr[1][0].value && tableArr[1][0].value === tableArr[2][0].value) {
+        for (let i = 0; i < 3; ++i) {tableArr[i][0].style.borderColor = "red"}
+        return true;
+    } else if (tableArr[0][1].value != null && tableArr[0][1].value === tableArr[1][1].value && tableArr[1][1].value === tableArr[2][1].value) {
+        for (let i = 0; i < 3; ++i) {tableArr[i][1].style.borderColor = "red"}
+        return true;
+    } else if (tableArr[0][2].value != null && tableArr[0][2].value === tableArr[1][2].value && tableArr[1][2].value === tableArr[2][2].value) {
+        for (let i = 0; i < 3; ++i) {tableArr[i][2].style.borderColor = "red"}
         return true;
     // Check by diagonals
-    } else if (
-        tableArr[0][0].value != null && tableArr[0][0].value === tableArr[1][1].value && tableArr[1][1].value === tableArr[2][2].value ||
-        tableArr[0][2].value != null && tableArr[0][2].value === tableArr[1][1].value && tableArr[1][1].value === tableArr[2][0].value
-    ) {
+    } else if (tableArr[0][0].value != null && tableArr[0][0].value === tableArr[1][1].value && tableArr[1][1].value === tableArr[2][2].value) {
+        for (let i = 0; i < 3; ++i) {tableArr[i][i].style.borderColor = "red"}
+        return true;
+    } else if (tableArr[0][2].value != null && tableArr[0][2].value === tableArr[1][1].value && tableArr[1][1].value === tableArr[2][0].value) {
+        for (let i = 0; i < 3; ++i) {tableArr[i][2-i].style.borderColor = "red"}
         return true;
     } else {
         return false
+    }
+}
+
+function blockTable() {
+    for (let i = 0; i < 3; ++i) {
+        for (let j = 0; j < 3; ++j) {
+            tableArr[i][j].removeEventListener("click", markCell);
+        }
     }
 }
 
@@ -83,8 +101,26 @@ function clearTable() {
     table.remove();
 }
 
+function createHeader() {
+    header = document.createElement("div");
+    header.id = "header"
+
+    let restart_button = document.createElement("button");
+    restart_button.className = "header_button";
+    restart_button.id = "restart_button";
+    restart_button.textContent = "Restart"
+    restart_button.addEventListener("click", (event) => {
+        clearTable();
+        createTable();
+    });
+
+    header.appendChild(restart_button);
+    main_div.appendChild(header);
+}
+
 window.onload = function () {
     main_div = document.getElementById("main_div");
 
+    createHeader();
     createTable();
 }

@@ -1,0 +1,63 @@
+.Board {
+    background-color: #C3ECFFFF;
+    min-height: 500px;
+    width: 100%;
+    /*opacity: .100;*/
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.Column {
+    border: 1px solid red;
+    flex-direction: row;
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+}
+
+.Task {
+    border: 1px solid blue;
+}
+
+.TaskButton {
+    float: left;
+    width: 5%;
+    border: 0;
+    margin: 10px 0;
+    min-height: 50px;
+    height: auto;
+    padding: 0;
+}
+
+.innerTaskButton {
+    width: 100%;
+    min-height: 50px;
+    height: auto;
+    padding: 0;
+    border: 0;
+}
+
+.TaskInput {
+    float: left;
+    width: 90%;
+    border: 0;
+    margin: 10px 0;
+    min-height: 50px;
+    height: auto;
+    resize: none;
+    padding: 0;
+}
+.innerTaskInput {
+    width: 100%;
+    min-height: 50px;
+    height: auto;
+    resize: none;
+    overflow: hidden;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}

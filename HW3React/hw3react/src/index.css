@@ -1,60 +1,76 @@
 .Board {
     background-color: #C3ECFFFF;
-    min-height: 500px;
+    min-height: 1000px;
     width: 100%;
     /*opacity: .100;*/
-    content: "";
     display: table;
     clear: both;
 }
 
 .Column {
-    border: 1px solid red;
+    border-left: 1px solid #8dbcf8;
+    border-right: 1px solid #8dbcf8;
     flex-direction: row;
-    float: left;
+    /*float: left;*/
+    display: table-cell;
     width: 33.33%;
     padding: 10px;
 }
 
 .Task {
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
+    display: table;
+    width: 100%;
+    height: 70px;
+    padding: 0;
+    margin: 5px 0;
 }
 
-.TaskButton {
-    float: left;
+.leftTaskButton, .rightTaskButton {
+    display: table-cell;
     width: 5%;
     border: 0;
-    margin: 10px 0;
-    min-height: 50px;
-    height: auto;
+    margin: 0 0;
+    height: 100%;
     padding: 0;
 }
 
 .innerTaskButton {
+    float: left;
     width: 100%;
-    min-height: 50px;
-    height: auto;
+    height: 100%;
     padding: 0;
     border: 0;
+    margin: 0;
 }
 
 .TaskInput {
-    float: left;
+    display: table-cell;
     width: 90%;
     border: 0;
-    margin: 10px 0;
-    min-height: 50px;
-    height: auto;
-    resize: none;
+    margin: 0 0;
+    height: 100%;
+    min-height: 100%;
     padding: 0;
 }
 .innerTaskInput {
+    float: left;
     width: 100%;
-    min-height: 50px;
-    height: auto;
+    height: 100%;
+    min-height: 100%;
     resize: none;
     overflow: hidden;
     padding: 0;
+}
+
+.AddButton {
+    width: 50px;
+    height: 50px;
+    margin: 20px auto 0 auto;
+    font-size: xxx-large;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 * {
